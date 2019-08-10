@@ -100,22 +100,4 @@ resource "google_container_cluster" "cluster" {
   }
 }
 
-# ---------------------------------------------------------------------------------------------------------------------
-# Prepare locals to keep the code cleaner
-# ---------------------------------------------------------------------------------------------------------------------
 
-locals {
-  latest_version     = data.google_container_engine_versions.location.latest_master_version
-  kubernetes_version = var.kubernetes_version != "latest" ? var.kubernetes_version : local.latest_version
-  network_project    = var.network_project != "" ? var.network_project : var.project
-}
-
-# ---------------------------------------------------------------------------------------------------------------------
-# Pull in data
-# ---------------------------------------------------------------------------------------------------------------------
-
-// Get available master versions in our location to determine the latest version
-data "google_container_engine_versions" "location" {
-  location = var.location
-  project  = var.project
-}
