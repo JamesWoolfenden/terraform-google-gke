@@ -65,7 +65,7 @@ resource "google_container_cluster" "cluster" {
   }
 
   network_policy {
-    enabled = var.enable_network_policy
+    enabled = true
 
     # Tigera (Calico Felix) is the only provider
     provider = "CALICO"
